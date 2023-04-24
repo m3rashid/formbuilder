@@ -11,3 +11,7 @@ body {
 .all-center {
   @apply flex justify-center items-center;
 }
+
+.field-object > #root {
+	border-width: 0;
+}

@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import App from 'app'
 import 'index.css'
-import AppLayout from 'components/globals/layout'
+import AppLayout from 'components/layout'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 
