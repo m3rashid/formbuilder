@@ -3,15 +3,12 @@ import RJSFForm from '@rjsf/antd'
 import validator from '@rjsf/validator-ajv8'
 import { Alert, Button } from 'antd'
 import { IForm } from 'atoms/forms'
-import { Optional } from 'utils/types'
 
-const SchemaForm: React.FC<Optional<IForm, 'id' | 'name'>> = props => {
-	if (!props.formSchema) return null
-
+const SchemaForm: React.FC<IForm> = props => {
 	return (
 		<RJSFForm
 			focusOnFirstError
-			schema={props.formSchema}
+			schema={JSON.parse(props.formSchema)}
 			uiSchema={{
 				'ui:ErrorListTemplate': props => {
 					const { errors } = props
@@ -23,7 +20,7 @@ const SchemaForm: React.FC<Optional<IForm, 'id' | 'name'>> = props => {
 						</div>
 					)
 				},
-				...props.formUiSchema,
+				...(props.formUiSchema ? JSON.parse(props.formUiSchema) : {}),
 			}}
 			validator={validator}
 			onSubmit={props.onFinishFormValues}
@@ -35,9 +32,9 @@ const SchemaForm: React.FC<Optional<IForm, 'id' | 'name'>> = props => {
 				wrapperCol: { xs: { span: 24 }, sm: { span: 18 } },
 				style: {
 					border: 0,
-					...props.formProps?.style,
+					...(props.formProps ? JSON.parse(props.formProps)?.style : {}),
 				},
-				...props.formProps,
+				...(props.formProps ? JSON.parse(props.formProps) : {}),
 			}}
 		>
 			<div className='w-full flex flex-row items-center justify-end gap-3'>
