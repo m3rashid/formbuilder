@@ -14,14 +14,13 @@ import {
   TimePickerProps,
   InputNumberProps,
   RadioProps,
-} from 'antd';
-import {
   WeekPickerProps,
   MonthPickerProps,
   RangePickerProps,
-} from 'antd/es/date-picker';
-import { CheckboxGroupProps } from 'antd/es/checkbox';
-import { PasswordProps, TextAreaProps } from 'antd/es/input';
+  PasswordProps,
+  TextAreaProps,
+  CheckboxGroupProps,
+} from './typeConversion';
 
 export type WidgetNameWithProps =
   | { widgetName: 'text-input'; widgetProps?: InputProps }
