@@ -26,7 +26,6 @@ const FormRenderer: FC<FormRenderProps> = ({ meta }) => {
 
           if (children) {
             return (
-              // @ts-ignore
               <WidgetField {...widgetProps}>
                 <FormRenderer meta={children} />
               </WidgetField>
@@ -39,7 +38,6 @@ const FormRenderer: FC<FormRenderProps> = ({ meta }) => {
             );
           } else {
             return (
-              // @ts-ignore
               <WidgetField {...widgetProps}>
                 {renderChildren ? renderChildren : undefined}
               </WidgetField>

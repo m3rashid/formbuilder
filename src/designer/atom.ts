@@ -22,7 +22,7 @@ export const useDesignerState = () => useRecoilState(designerAtom);
 
 export const designerSidebarOpen = atom<boolean>({
   key: 'designerSidebarOpen',
-  default: false,
+  default: true,
 });
 
 export const useDesignerSidebarOpen = () => useRecoilState(designerSidebarOpen);

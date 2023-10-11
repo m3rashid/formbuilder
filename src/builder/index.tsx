@@ -46,10 +46,10 @@ FormBuilder.useForceUpdate = () => {
   return forceUpdate;
 };
 
-FormBuilder.register('input')(Input);
+FormBuilder.register('text-input')(Input);
 FormBuilder.register('button')(Button);
-FormBuilder.register('number')(InputNumber);
-FormBuilder.register('password')(Input.Password);
+FormBuilder.register('number-input')(InputNumber);
+FormBuilder.register('password-input')(Input.Password);
 FormBuilder.register('textarea')(Input.TextArea);
 
 FormBuilder.register('checkbox')(Checkbox);

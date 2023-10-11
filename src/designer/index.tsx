@@ -11,12 +11,12 @@ const Designer: React.FC = () => {
   return (
     <>
       <div className='flex h-screen'>
-        <div className='h-screen'>
-          <FormBuilder meta={elements} />
-        </div>
-
         <div className={`h-screen ${open ? 'w-80' : ''}`}>
           <HelperSidebar />
+        </div>
+
+        <div className='h-screen'>
+          <FormBuilder meta={elements} />
         </div>
       </div>
     </>

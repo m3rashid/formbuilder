@@ -1,8 +1,8 @@
-import { RecoilRoot } from 'recoil';
 import Designer from './designer';
+import { RecoilRoot } from 'recoil';
 // import FormBuilder from './builder';
 
-function App() {
+const App = () => {
   return (
     <RecoilRoot>
       <Designer />
@@ -12,10 +12,7 @@ function App() {
             {
               key: 'form',
               widgetName: 'form',
-              widgetProps: {
-                size: 'large',
-                layout: 'vertical',
-              },
+              widgetProps: { size: 'large', layout: 'vertical' },
               children: [
                 {
                   key: 'ch1',
@@ -25,7 +22,7 @@ function App() {
                       { required: true, message: 'Username is required' },
                     ],
                   },
-                  widgetName: 'input',
+                  widgetName: 'text-input',
                   widgetProps: {
                     placeholder: 'Username',
                   },
@@ -46,6 +43,6 @@ function App() {
       </div> */}
     </RecoilRoot>
   );
-}
+};
 
 export default App;

@@ -24,11 +24,11 @@ import { CheckboxGroupProps } from 'antd/es/checkbox';
 import { PasswordProps, TextAreaProps } from 'antd/es/input';
 
 export type WidgetNameWithProps =
-  | { widgetName: 'input'; widgetProps?: InputProps }
+  | { widgetName: 'text-input'; widgetProps?: InputProps }
+  | { widgetName: 'password-input'; widgetProps?: PasswordProps }
+  | { widgetName: 'number-input'; widgetProps?: InputNumberProps }
   | { widgetName: 'button'; widgetProps?: ButtonProps }
-  | { widgetName: 'password'; widgetProps?: PasswordProps }
   | { widgetName: 'textarea'; widgetProps?: TextAreaProps }
-  | { widgetName: 'number'; widgetProps?: InputNumberProps }
   | { widgetName: 'checkbox'; widgetProps?: CheckboxProps }
   | { widgetName: 'checkbox-group'; widgetProps?: CheckboxGroupProps }
   | { widgetName: 'radio'; widgetProps?: RadioProps }
@@ -50,7 +50,7 @@ export type WidgetNameWithProps =
 export type SupportedWidget = WidgetNameWithProps['widgetName'];
 
 export type CurrentWidgetProp<T extends SupportedWidget> = FC<
-  Extract<WidgetNameWithProps, { widgetName: T }>['widgetProps'] | any
+  Extract<WidgetNameWithProps, { widgetName: T }>['widgetProps']
 >;
 
 export type FormBuilderMetaProps = WidgetNameWithProps & {
