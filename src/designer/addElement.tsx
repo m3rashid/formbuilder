@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Typography } from 'antd';
 
 import useDesigner from './useDesigner';
-import { FormElementInstance } from './atom';
+import { FormElementInstance } from '../builder/types';
 
 export type AddElementProps = FormElementInstance & {
   Icon: any;

@@ -1,4 +1,5 @@
-import { FormElementInstance, useDesignerState } from './atom';
+import { useDesignerState } from './atom';
+import { FormElementInstance } from '../builder/types';
 
 const useDesigner = () => {
   const [designer, setDesigner] = useDesignerState();

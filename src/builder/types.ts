@@ -52,15 +52,16 @@ export type CurrentWidgetProp<T extends SupportedWidget> = FC<
   Extract<WidgetNameWithProps, { widgetName: T }>['widgetProps']
 >;
 
-export type FormBuilderMetaProps = WidgetNameWithProps & {
-  children?: Array<FormBuilderMetaProps & { key?: Key }>;
+export type FormElementInstance = WidgetNameWithProps & {
+  children?: FormElementInstance[];
   renderChildren?: any;
   formItemProps?: FormItemProps;
   render?: FC;
+  id: string;
   key?: Key;
 };
 
-export type FormBuilderMeta = FormBuilderMetaProps[];
+export type FormBuilderMeta = FormElementInstance[];
 
 export interface FormRenderProps {
   meta: FormBuilderMeta;

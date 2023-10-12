@@ -1,9 +1,5 @@
 import { atom, useRecoilState } from 'recoil';
-import { FormBuilderMetaProps } from '../builder/types';
-
-export type FormElementInstance = FormBuilderMetaProps & {
-  id: string;
-};
+import { FormElementInstance } from '../builder/types';
 
 export type DesignerAtom = {
   elements: FormElementInstance[];
