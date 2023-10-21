@@ -8,27 +8,27 @@ const useDesigner = () => {
     setDesigner((prev) => {
       const elements = [...prev.elements];
       elements.splice(index, 0, element);
-      return { ...prev, elements };
+      return { elements, selectedElement: element };
     });
   };
 
-  const updateElement = (id: string, element: FormElementInstance) => {
+  const updateElement = (index: number, element: FormElementInstance) => {
     setDesigner((prev) => {
       const newElements = [...prev.elements];
-      const index = newElements.findIndex((el) => el.id === id);
       newElements[index] = element;
       return { ...prev, elements: newElements };
     });
   };
 
-  const removeElement = (id: string) => {
+  const removeElement = (index: number) => {
     setDesigner((prev) => {
-      const elements = prev.elements.filter((el) => el.id !== id);
+      const elements = prev.elements.filter((_, idx) => idx !== index);
       return { ...prev, elements };
     });
   };
 
-  const setSelectedElement = (selectedElement: FormElementInstance) => {
+  const selectElement = (index: number) => {
+    const selectedElement = designer.elements[index];
     setDesigner((prev) => ({ ...prev, selectedElement }));
   };
 
@@ -39,9 +39,9 @@ const useDesigner = () => {
   return {
     addElement,
     setElements,
+    selectElement,
     updateElement,
     removeElement,
-    setSelectedElement,
     elements: designer.elements,
     selectedElement: designer.selectedElement,
   };

@@ -15,13 +15,14 @@ const FormRenderer: FC<FormRenderProps> = ({ meta }) => {
           formItemProps = {},
           renderChildren = undefined,
         }) => {
+          // @ts-ignore
           const Widget = widgetMap[widgetName];
           let WidgetField = Widget.fieldTransformer
             ? Widget.fieldTransformer(Widget)
             : Widget?.widget;
 
           if (render) {
-            WidgetField = render;
+            WidgetField = render(WidgetField);
           }
 
           if (children) {

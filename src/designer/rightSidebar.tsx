@@ -1,8 +1,8 @@
 import React from 'react';
-import { designerRightSidebarOpen } from './atom';
 import RenderProps from './getProps';
-import { buttonProps } from '../builder/exposedProps';
 import SidebarContainer from './sidebarContainer';
+import { designerRightSidebarOpen } from './atom';
+import elementProps from '../builder/exposedProps';
 
 export type RightHelperSidebarProps = {
   //
@@ -15,9 +15,9 @@ const RightHelperSidebar: React.FC<RightHelperSidebarProps> = () => {
       title='Element Props'
       sidebarOpenAtom={designerRightSidebarOpen}
     >
-      {Object.entries(buttonProps).map(([key, value]) => (
+      {/* {Object.entries(elementProps[]).map(([key, value]) => (
         <RenderProps label={key} value={value} key={key} />
-      ))}
+      ))} */}
     </SidebarContainer>
   );
 };

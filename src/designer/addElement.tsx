@@ -9,10 +9,10 @@ export type AddElementProps = FormElementInstance & {
 };
 
 const AddElement: React.FC<AddElementProps> = (props) => {
-  const { addElement, setSelectedElement } = useDesigner();
+  const { addElement } = useDesigner();
 
   const handleClick = () => {
-    setSelectedElement(props);
+    //
   };
 
   return (

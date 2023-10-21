@@ -1,4 +1,4 @@
-import { FC, Key } from 'react';
+import React from 'react';
 import {
   RowProps,
   ColProps,
@@ -53,7 +53,7 @@ export type WidgetProps<T extends SupportedWidget> = Extract<
   { widgetName: T }
 >['widgetProps'];
 
-export type CurrentWidgetFCProps<T extends SupportedWidget> = FC<
+export type CurrentWidgetFCProps<T extends SupportedWidget> = React.FC<
   WidgetProps<T>
 >;
 
@@ -61,8 +61,8 @@ export type FormElementInstance = WidgetNameWithProps & {
   children?: FormElementInstance[];
   renderChildren?: any;
   formItemProps?: FormItemProps;
-  render?: FC;
-  key?: Key;
+  render?: (field: any) => React.FC;
+  key?: React.Key;
 };
 
 export type FormBuilderMeta = FormElementInstance[];

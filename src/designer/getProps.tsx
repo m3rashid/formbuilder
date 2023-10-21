@@ -1,4 +1,6 @@
-const RenderProps = (props: { label: string; value: string | string[] }) => {
+import { SupportedValues } from '../builder/exposedProps';
+
+const RenderProps = (props: { label: string; value: SupportedValues }) => {
   if (typeof props.value === 'string') {
     return (
       <div>

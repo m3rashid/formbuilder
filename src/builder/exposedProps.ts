@@ -1,19 +1,14 @@
-export const buttonProps = {
-  block: 'boolean',
-  danger: 'boolean',
-  disabled: 'boolean',
-  ghost: 'boolean',
-  htmlType: 'string',
-  className: 'string',
-  style: 'textarea',
-  icon: 'string',
-  shape: ['default', 'circle', 'round'],
-  size: ['large', 'middle', 'small'],
-  type: ['primary', 'dashed', 'link', 'text', 'default'],
-  onClick: 'textarea',
-};
+import { SupportedWidget } from './types';
 
-export const textInputProps = {
+export type SupportedValues =
+  | 'string'
+  | 'textarea'
+  | 'number'
+  | 'boolean'
+  | Array<string>;
+export type Props = Record<string, SupportedValues>;
+
+const textInputProps: Props = {
   bordered: 'boolean',
   defaultValue: 'string',
   disabled: 'boolean',
@@ -25,12 +20,12 @@ export const textInputProps = {
   value: 'string',
 };
 
-export const passwordInputProps = {
+const passwordInputProps: Props = {
   ...textInputProps,
   visibilityToggle: 'boolean',
 };
 
-export const numberInputProps = {
+const numberInputProps: Props = {
   bordered: 'boolean',
   controls: 'boolean',
   defaultValue: 'number',
@@ -45,7 +40,22 @@ export const numberInputProps = {
   value: 'string',
 };
 
-export const textAreaInputProps = {
+const buttonProps: Props = {
+  block: 'boolean',
+  danger: 'boolean',
+  disabled: 'boolean',
+  ghost: 'boolean',
+  htmlType: 'string',
+  className: 'string',
+  style: 'textarea',
+  icon: 'string',
+  shape: ['default', 'circle', 'round'],
+  size: ['large', 'middle', 'small'],
+  type: ['primary', 'dashed', 'link', 'text', 'default'],
+  onClick: 'textarea',
+};
+
+const textAreaProps: Props = {
   allowClear: 'boolean',
   bordered: 'boolean',
   defaultValue: 'string',
@@ -55,3 +65,64 @@ export const textAreaInputProps = {
   onPressEnter: 'textarea',
   value: 'string',
 };
+
+const checkboxProps = {};
+
+const checkboxGroupProps = {};
+
+const radioProps = {};
+
+const radioGroupProps = {};
+
+const monthPickerProps = {};
+
+const quarterPickerProps = {};
+
+const timerangePickerProps = {};
+
+const timePickerProps = {};
+
+const weekPickerProps = {};
+
+const yearPickerProps = {};
+
+const switchProps = {};
+
+const selectProps = {};
+
+const imageProps = {};
+
+const rowProps = {};
+
+const colProps = {};
+
+const formItemProps = {};
+
+const formProps = {};
+
+const elementProps: Record<SupportedWidget, Props> = {
+  'text-input': textInputProps,
+  'password-input': passwordInputProps,
+  'number-input': numberInputProps,
+  button: buttonProps,
+  textarea: textAreaProps,
+  checkbox: checkboxProps,
+  'checkbox-group': checkboxGroupProps,
+  radio: radioProps,
+  'radio-group': radioGroupProps,
+  'month-picker': monthPickerProps,
+  'quarter-picker': quarterPickerProps,
+  'timerange-picker': timerangePickerProps,
+  'time-picker': timePickerProps,
+  'week-picker': weekPickerProps,
+  'year-picker': yearPickerProps,
+  switch: switchProps,
+  select: selectProps,
+  image: imageProps,
+  row: rowProps,
+  col: colProps,
+  'form-item': formItemProps,
+  form: formProps,
+};
+
+export default elementProps;
