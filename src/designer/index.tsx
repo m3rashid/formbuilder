@@ -1,23 +1,23 @@
 import React from 'react';
-import useDesigner from './useDesigner';
+
 import FormBuilder from '../builder';
-import HelperSidebar from './sidebar';
-import { useDesignerSidebarOpen } from './atom';
+import useDesigner from './useDesigner';
+import HelperSidebar from './leftSidebar';
+import RightHelperSidebar from './rightSidebar';
 
 const Designer: React.FC = () => {
   const { elements } = useDesigner();
-  const [open, setOpen] = useDesignerSidebarOpen();
 
   return (
     <>
-      <div className='flex h-screen'>
-        <div className={`h-screen ${open ? 'w-80' : ''}`}>
-          <HelperSidebar />
-        </div>
+      <div className='flex h-screen bg-slate-200'>
+        <HelperSidebar />
 
-        <div className='h-screen'>
+        <div className='h-[calc(h-screen - m-3)] m-3 w-full bg-white overflow-auto'>
           <FormBuilder meta={elements} />
         </div>
+
+        <RightHelperSidebar />
       </div>
     </>
   );

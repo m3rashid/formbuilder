@@ -1,7 +1,11 @@
 import React, { FC } from 'react';
 import FormRenderer from './renderer';
 import { widgetMap } from './constants';
-import { CurrentWidgetProp, FormRenderProps, SupportedWidget } from './types';
+import {
+  CurrentWidgetFCProps,
+  FormRenderProps,
+  SupportedWidget,
+} from './types';
 import {
   Button,
   Checkbox,
@@ -21,7 +25,7 @@ type FormBuilder = FC<FormRenderProps> & {
   register: (
     widgetName: SupportedWidget
   ) => (
-    widget: CurrentWidgetProp<typeof widgetName>,
+    widget: CurrentWidgetFCProps<typeof widgetName>,
     fieldTransformer?: (params?: any) => any
   ) => void;
   useForceUpdate: () => () => void;
@@ -33,7 +37,7 @@ const FormBuilder: FormBuilder = (props) => {
 
 FormBuilder.register = (widgetName) => (Widget, fieldTransformer) => {
   widgetMap[widgetName] = {
-    widget: (props: CurrentWidgetProp<typeof widgetName>) => (
+    widget: (props: CurrentWidgetFCProps<typeof widgetName>) => (
       <Widget {...props} />
     ),
     fieldTransformer: fieldTransformer || undefined,

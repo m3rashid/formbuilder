@@ -26,42 +26,42 @@ import {
 } from 'antd/es/input';
 
 // Filter out what values to be allowed in the form schema
-export type RowProps = Pick<NativeRowProps, 'className'>;
+export type RowProps = NativeRowProps;
 
-export type ColProps = Pick<NativeColProps, 'className'>;
+export type ColProps = NativeColProps;
 
-export type FormProps<T> = Pick<NativeFormProps<T>, 'className'>;
+export type FormProps<T> = NativeFormProps<T>;
 
-export type ImageProps = Pick<NativeImageProps, 'className'>;
+export type ImageProps = NativeImageProps;
 
-export type InputProps = Pick<NativeInputProps, 'className'>;
+export type InputProps = NativeInputProps;
 
-export type SelectProps = Pick<NativeSelectProps, 'className'>;
+export type SelectProps = NativeSelectProps;
 
-export type SwitchProps = Pick<NativeSwitchProps, 'className'>;
+export type SwitchProps = NativeSwitchProps;
 
-export type ButtonProps = Pick<NativeButtonProps, 'className'>;
+export type ButtonProps = NativeButtonProps;
 
-export type CheckboxProps = Pick<NativeCheckboxProps, 'className'>;
+export type CheckboxProps = NativeCheckboxProps;
 
-export type FormItemProps = Pick<NativeFormItemProps, 'className'>;
+export type FormItemProps = NativeFormItemProps;
 
-export type RadioGroupProps = Pick<NativeRadioGroupProps, 'className'>;
+export type RadioGroupProps = NativeRadioGroupProps;
 
-export type TimePickerProps = Pick<NativeTimePickerProps, 'className'>;
+export type TimePickerProps = NativeTimePickerProps;
 
-export type InputNumberProps = Pick<NativeInputNumberProps, 'className'>;
+export type InputNumberProps = NativeInputNumberProps;
 
-export type RadioProps = Pick<NativeRadioProps, 'className'>;
+export type RadioProps = NativeRadioProps;
 
-export type WeekPickerProps = Pick<NativeWeekPickerProps, 'className'>;
+export type WeekPickerProps = NativeWeekPickerProps;
 
-export type MonthPickerProps = Pick<NativeMonthPickerProps, 'className'>;
+export type MonthPickerProps = NativeMonthPickerProps;
 
-export type RangePickerProps = Pick<NativeRangePickerProps, 'className'>;
+export type RangePickerProps = NativeRangePickerProps;
 
-export type PasswordProps = Pick<NativePasswordProps, 'className'>;
+export type PasswordProps = NativePasswordProps;
 
-export type TextAreaProps = Pick<NativeTextAreaProps, 'className'>;
+export type TextAreaProps = NativeTextAreaProps;
 
-export type CheckboxGroupProps = Pick<NativeCheckboxGroupProps, 'className'>;
+export type CheckboxGroupProps = NativeCheckboxGroupProps;

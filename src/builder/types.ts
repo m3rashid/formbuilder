@@ -48,8 +48,13 @@ export type WidgetNameWithProps =
 
 export type SupportedWidget = WidgetNameWithProps['widgetName'];
 
-export type CurrentWidgetProp<T extends SupportedWidget> = FC<
-  Extract<WidgetNameWithProps, { widgetName: T }>['widgetProps']
+export type WidgetProps<T extends SupportedWidget> = Extract<
+  WidgetNameWithProps,
+  { widgetName: T }
+>['widgetProps'];
+
+export type CurrentWidgetFCProps<T extends SupportedWidget> = FC<
+  WidgetProps<T>
 >;
 
 export type FormElementInstance = WidgetNameWithProps & {
@@ -57,7 +62,6 @@ export type FormElementInstance = WidgetNameWithProps & {
   renderChildren?: any;
   formItemProps?: FormItemProps;
   render?: FC;
-  id: string;
   key?: Key;
 };
 

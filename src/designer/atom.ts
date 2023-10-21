@@ -6,7 +6,7 @@ export type DesignerAtom = {
   selectedElement: FormElementInstance | null;
 };
 
-export const designerAtom = atom<DesignerAtom>({
+export const designerLeftAtom = atom<DesignerAtom>({
   key: 'designerAtom',
   default: {
     elements: [],
@@ -14,11 +14,20 @@ export const designerAtom = atom<DesignerAtom>({
   },
 });
 
-export const useDesignerState = () => useRecoilState(designerAtom);
+export const useDesignerState = () => useRecoilState(designerLeftAtom);
 
-export const designerSidebarOpen = atom<boolean>({
-  key: 'designerSidebarOpen',
+export const designerLeftSidebarOpen = atom<boolean>({
+  key: 'designerLeftSidebarOpen',
   default: true,
 });
 
-export const useDesignerSidebarOpen = () => useRecoilState(designerSidebarOpen);
+export const useDesignerLeftSidebarOpen = () =>
+  useRecoilState(designerLeftSidebarOpen);
+
+export const designerRightSidebarOpen = atom<boolean>({
+  key: 'designerRightSidebarOpen',
+  default: true,
+});
+
+export const useDesignerRightSidebarOpen = () =>
+  useRecoilState(designerRightSidebarOpen);

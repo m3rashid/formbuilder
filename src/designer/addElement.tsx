@@ -9,26 +9,32 @@ export type AddElementProps = FormElementInstance & {
 };
 
 const AddElement: React.FC<AddElementProps> = (props) => {
-  const { addElement } = useDesigner();
+  const { addElement, setSelectedElement } = useDesigner();
+
+  const handleClick = () => {
+    setSelectedElement(props);
+  };
 
   return (
-    <>
+    <div onClick={handleClick}>
       <Card
-        style={{
-          width: 140,
-          height: 140,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-        bodyStyle={{ height: '100%' }}
         onClick={() => addElement(0, props)}
+        bodyStyle={{
+          padding: 10,
+          height: '100%',
+          paddingLeft: 20,
+          paddingRight: 20,
+        }}
       >
-        <props.Icon style={{ fontSize: 30 }} />
-        <br />
-        <Typography.Text>{props.widgetName.toUpperCase()}</Typography.Text>
+        <div className='flex items-center justify-start gap-4'>
+          <props.Icon style={{ fontSize: 20 }} />
+
+          <Typography.Text className='m-0'>
+            {props.widgetName.toUpperCase()}
+          </Typography.Text>
+        </div>
       </Card>
-    </>
+    </div>
   );
 };
 
