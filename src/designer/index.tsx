@@ -7,7 +7,8 @@ import RightHelperSidebar from './rightSidebar';
 import ElementWrapper from './elementWrapper';
 
 const Designer: React.FC = () => {
-  const { elements } = useDesigner();
+  const { elements, selectedElement } = useDesigner();
+  console.log(selectedElement);
 
   return (
     <>
