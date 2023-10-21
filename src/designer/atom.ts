@@ -3,13 +3,18 @@ import { FormElementInstance } from '../builder/types';
 
 export type DesignerAtom = {
   elements: FormElementInstance[];
-  selectedElement: FormElementInstance | null;
+  mode: 'edit' | 'preview';
+  selectedElement: {
+    element: FormElementInstance;
+    index: number;
+  } | null;
 };
 
 export const designerLeftAtom = atom<DesignerAtom>({
   key: 'designerAtom',
   default: {
     elements: [],
+    mode: 'edit',
     selectedElement: null,
   },
 });

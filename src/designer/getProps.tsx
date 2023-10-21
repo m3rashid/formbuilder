@@ -7,7 +7,7 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (Array.isArray(props.value)) {
     return (
-      <Form.Item label={labelToShow}>
+      <Form.Item label={labelToShow} name={props.label}>
         <Select
           options={props.value.map((t) => ({ label: t, value: t }))}
           placeholder={`Select value for ${props.label}`}
@@ -18,7 +18,7 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (props.value === 'string') {
     return (
-      <Form.Item label={labelToShow}>
+      <Form.Item name={props.label} label={labelToShow}>
         <Input placeholder={`Value for ${props.label}`} />
       </Form.Item>
     );
@@ -26,7 +26,7 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (props.value === 'boolean') {
     return (
-      <Form.Item label={labelToShow}>
+      <Form.Item name={props.label} label={labelToShow}>
         <Checkbox />
       </Form.Item>
     );
@@ -34,7 +34,7 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (props.value === 'number') {
     return (
-      <Form.Item label={labelToShow}>
+      <Form.Item name={props.label} label={labelToShow}>
         <InputNumber style={{ width: '100%' }} />
       </Form.Item>
     );
@@ -42,7 +42,7 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (props.value === 'textarea') {
     return (
-      <Form.Item label={labelToShow}>
+      <Form.Item name={props.label} label={labelToShow}>
         <Input.TextArea
           placeholder={`Value for ${props.label}`}
         ></Input.TextArea>

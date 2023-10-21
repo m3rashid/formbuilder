@@ -1,8 +1,13 @@
 import { CloseOutlined } from '@ant-design/icons';
 
-import { AddElementProps } from './addElement';
+import { SupportedWidget } from '../builder/types';
 
-const elements: Array<AddElementProps> = [
+export type Element = {
+  Icon: React.FC;
+  widgetName: SupportedWidget;
+};
+
+const elements: Array<Element> = [
   { widgetName: 'text-input', Icon: CloseOutlined },
   { widgetName: 'password-input', Icon: CloseOutlined },
   { widgetName: 'number-input', Icon: CloseOutlined },

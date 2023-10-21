@@ -36,6 +36,7 @@ const FormBuilder: FormBuilder = (props) => {
 };
 
 FormBuilder.register = (widgetName) => (Widget, fieldTransformer) => {
+  // @ts-ignore
   widgetMap[widgetName] = {
     widget: (props: CurrentWidgetFCProps<typeof widgetName>) => (
       <Widget {...props} />

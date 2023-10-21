@@ -18,7 +18,7 @@ const AddElement: React.FC<AddElementProps> = (props) => {
   return (
     <div onClick={handleClick}>
       <Card
-        onClick={() => addElement(0, props)}
+        onClick={() => addElement(props)}
         bodyStyle={{
           padding: 10,
           height: '100%',

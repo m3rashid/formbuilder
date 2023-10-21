@@ -53,6 +53,7 @@ const buttonProps: Props = {
   size: ['large', 'middle', 'small'],
   type: ['primary', 'dashed', 'link', 'text', 'default'],
   onClick: 'textarea',
+  children: 'string',
 };
 
 const textAreaProps: Props = {

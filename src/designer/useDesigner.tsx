@@ -4,11 +4,16 @@ import { FormElementInstance } from '../builder/types';
 const useDesigner = () => {
   const [designer, setDesigner] = useDesignerState();
 
-  const addElement = (index: number, element: FormElementInstance) => {
+  const addElement = (element: FormElementInstance) => {
     setDesigner((prev) => {
+      const previousIndex = prev.elements.length;
       const elements = [...prev.elements];
-      elements.splice(index, 0, element);
-      return { elements, selectedElement: element };
+      elements.splice(previousIndex - 1, 0, element);
+      return {
+        ...prev,
+        elements,
+        selectedElement: { element, index: previousIndex },
+      };
     });
   };
 
@@ -29,19 +34,27 @@ const useDesigner = () => {
 
   const selectElement = (index: number) => {
     const selectedElement = designer.elements[index];
-    setDesigner((prev) => ({ ...prev, selectedElement }));
+    setDesigner((prev) => ({
+      ...prev,
+      selectedElement: { element: selectedElement, index },
+    }));
   };
 
   const setElements = (elements: FormElementInstance[]) => {
     setDesigner((prev) => ({ ...prev, elements }));
   };
 
+  const setMode = (val: 'preview' | 'edit') =>
+    setDesigner((p) => ({ ...p, mode: val }));
+
   return {
+    setMode,
     addElement,
     setElements,
     selectElement,
     updateElement,
     removeElement,
+    mode: designer.mode,
     elements: designer.elements,
     selectedElement: designer.selectedElement,
   };
