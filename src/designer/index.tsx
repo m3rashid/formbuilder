@@ -23,26 +23,28 @@ const Designer: React.FC = () => {
             </Radio.Group>
           </div>
 
-          {mode === 'preview' ? (
-            <div className='h-[calc(h-screen - 90px)] bg-white'>
-              <FormBuilder meta={elements} />
-            </div>
-          ) : (
-            <div className='h-[calc(h-screen - 90px)] p-2 bg-white rounded-md'>
-              <FormBuilder
-                meta={elements.map((el, index) => ({
-                  ...el,
-                  render: (WidgetField: any) => (props: any) => {
-                    return (
-                      <ElementWrapper elementIndex={index}>
-                        <WidgetField {...props} />
-                      </ElementWrapper>
-                    );
-                  },
-                }))}
-              />
-            </div>
-          )}
+          {elements.length > 0 ? (
+            mode === 'preview' ? (
+              <div className='h-[calc(h-screen - 90px)] bg-white rounded-md'>
+                <FormBuilder meta={elements} />
+              </div>
+            ) : (
+              <div className='h-[calc(h-screen - 90px)] p-2 bg-white rounded-md'>
+                <FormBuilder
+                  meta={elements.map((el, index) => ({
+                    ...el,
+                    render: (WidgetField: any) => (props: any) => {
+                      return (
+                        <ElementWrapper elementIndex={index}>
+                          <WidgetField {...props} />
+                        </ElementWrapper>
+                      );
+                    },
+                  }))}
+                />
+              </div>
+            )
+          ) : null}
         </div>
 
         <RightHelperSidebar />
