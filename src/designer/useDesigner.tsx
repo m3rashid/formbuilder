@@ -1,42 +1,100 @@
+import { nanoid } from 'nanoid';
+
 import { useDesignerState } from './atom';
 import { FormElementInstance } from '../builder/types';
+
+const findElementById = (
+  key: string,
+  searchSpace: FormElementInstance[]
+): FormElementInstance | undefined => {
+  return searchSpace
+    .map((element) => {
+      return element.key === key
+        ? element
+        : findElementById(key, element.children || []);
+    })
+    .filter((t) => !!t)[0];
+};
+
+const updateElementById = (
+  updatedElement: FormElementInstance,
+  searchSpace: FormElementInstance[]
+): FormElementInstance[] => {
+  return searchSpace.reduce<FormElementInstance[]>((acc, element) => {
+    return [
+      ...acc,
+      ...(element.key === updatedElement.key
+        ? [{ ...element, ...updatedElement }]
+        : [
+            {
+              ...element,
+              children: updateElementById(
+                updatedElement,
+                element.children || []
+              ),
+            },
+          ]),
+    ];
+  }, []);
+};
+
+const removeElementById = (
+  key: string,
+  searchSpace: FormElementInstance[]
+): FormElementInstance[] => {
+  return searchSpace.reduce<FormElementInstance[]>((acc, element) => {
+    return [
+      ...acc,
+      ...(element.key === key
+        ? []
+        : [
+            {
+              ...element,
+              children: removeElementById(key, element.children || []),
+            },
+          ]),
+    ];
+  }, []);
+};
 
 const useDesigner = () => {
   const [designer, setDesigner] = useDesignerState();
 
-  const addElement = (element: FormElementInstance) => {
+  const onDragEnd = (e: any) => {
+    console.log('onDragEnd', e);
+  };
+
+  const addElement = (element: Omit<FormElementInstance, 'key'>) => {
     setDesigner((prev) => {
-      const previousIndex = prev.elements.length;
-      const elements = [...prev.elements];
-      elements.splice(previousIndex - 1, 0, element);
+      const newElement = { ...element, key: nanoid() };
       return {
         ...prev,
-        elements,
-        selectedElement: { element, index: previousIndex },
+        selectedElement: newElement,
+        elements: [...prev.elements, newElement],
       };
     });
   };
 
-  const updateElement = (index: number, element: FormElementInstance) => {
-    setDesigner((prev) => {
-      const newElements = [...prev.elements];
-      newElements[index] = element;
-      return { ...prev, elements: newElements };
-    });
-  };
-
-  const removeElement = (index: number) => {
-    setDesigner((prev) => {
-      const elements = prev.elements.filter((_, idx) => idx !== index);
-      return { ...prev, elements };
-    });
-  };
-
-  const selectElement = (index: number) => {
-    const selectedElement = designer.elements[index];
+  const updateElement = (updatedElement: FormElementInstance) => {
     setDesigner((prev) => ({
       ...prev,
-      selectedElement: { element: selectedElement, index },
+      elements: updateElementById(updatedElement, prev.elements),
+    }));
+  };
+
+  const removeElement = (key: string) => {
+    setDesigner((prev) => ({
+      ...prev,
+      selectedElement: null,
+      elements: removeElementById(key, prev.elements),
+    }));
+  };
+
+  const selectElement = (key: string) => {
+    setDesigner((prev) => ({
+      ...prev,
+      selectedElement:
+        findElementById(key, prev.elements) || prev.selectedElement,
     }));
   };
 
@@ -44,11 +102,13 @@ const useDesigner = () => {
     setDesigner((prev) => ({ ...prev, elements }));
   };
 
-  const setMode = (val: 'preview' | 'edit') =>
+  const setMode = (val: 'preview' | 'edit') => {
     setDesigner((p) => ({ ...p, mode: val }));
+  };
 
   return {
     setMode,
+    onDragEnd,
     addElement,
     setElements,
     selectElement,

@@ -9,48 +9,38 @@ import { designerRightSidebarOpen } from './atom';
 import elementProps from '../builder/exposedProps';
 import { FormElementInstance } from '../builder/types';
 
-export type RightHelperSidebarProps = {
-  //
-};
-
-const RightHelperSidebar: React.FC<RightHelperSidebarProps> = () => {
+const RightHelperSidebar: React.FC = () => {
   const { selectedElement, updateElement } = useDesigner();
   const [form] = useForm();
 
   useEffect(() => {
     form.resetFields();
+    if (!selectedElement) return;
     form.setFields(
-      Object.entries(selectedElement?.element.widgetProps || {}).map(
+      Object.entries(selectedElement?.widgetProps || {}).map(
         ([key, value]) => ({ name: key, value })
       )
     );
   }, [selectedElement, form]);
 
   const onSaveHandler = () => {
-    const formValues = form.getFieldsValue();
+    if (!selectedElement) return;
 
-    //@ts-ignore
+    const formValues = form.getFieldsValue();
     const updatedElement: FormElementInstance = {
-      ...selectedElement?.element,
+      ...selectedElement,
       widgetProps: Object.entries(formValues).reduce(
         (acc, [key, val]) => (val ? { ...acc, [key]: val } : acc),
         {}
       ),
     };
 
-    updateElement(selectedElement?.index || 0, updatedElement); // NOTE: should not be zero if no index!!!!
+    updateElement(updatedElement);
   };
 
   const onResetProps = () => {
-    const updatedElement = {
-      ...selectedElement?.element,
-      widgetProps: form.resetFields(),
-    };
-
-    // @ts-ignore
-    // bhai type error dekh liyo you are better at typescript ;)
-    // I am just introducing new bugs for your coding adventure.
-    updateElement(selectedElement?.index || 0, updatedElement);
+    if (!selectedElement) return;
+    updateElement({ ...selectedElement, widgetProps: undefined });
   };
 
   return (
@@ -62,11 +52,11 @@ const RightHelperSidebar: React.FC<RightHelperSidebarProps> = () => {
       {selectedElement ? (
         <Form form={form} layout='vertical' onFinish={onSaveHandler}>
           <div>
-            {Object.entries(
-              elementProps[selectedElement.element.widgetName]
-            ).map(([key, value]) => (
-              <RenderProps label={key} value={value} key={key} />
-            ))}
+            {Object.entries(elementProps[selectedElement.widgetName]).map(
+              ([key, value]) => (
+                <RenderProps label={key} value={value} key={key} />
+              )
+            )}
           </div>
 
           <div className='flex items-center flex-shrink gap-2'>

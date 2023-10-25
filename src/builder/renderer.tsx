@@ -8,6 +8,7 @@ const FormRenderer: FC<FormRenderProps> = ({ meta }) => {
     <Fragment>
       {meta.map(
         ({
+          key,
           children,
           widgetName,
           widgetProps,
@@ -25,21 +26,21 @@ const FormRenderer: FC<FormRenderProps> = ({ meta }) => {
             WidgetField = render(WidgetField);
           }
 
-          if (children) {
+          if (children && children.length > 0) {
             return (
-              <WidgetField {...widgetProps}>
+              <WidgetField key={key} {...widgetProps}>
                 <FormRenderer meta={children} />
               </WidgetField>
             );
           } else if (formItemProps) {
             return (
-              <Form.Item {...formItemProps}>
+              <Form.Item key={key} {...formItemProps}>
                 <WidgetField {...widgetProps} />
               </Form.Item>
             );
           } else {
             return (
-              <WidgetField {...widgetProps}>
+              <WidgetField key={key} {...widgetProps}>
                 {renderChildren ? renderChildren : undefined}
               </WidgetField>
             );

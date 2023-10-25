@@ -41,19 +41,17 @@ const numberInputProps: Props = {
 };
 
 const buttonProps: Props = {
+  children: 'string',
   block: 'boolean',
   danger: 'boolean',
   disabled: 'boolean',
   ghost: 'boolean',
-  htmlType: 'string',
-  className: 'string',
   style: 'textarea',
   icon: 'string',
   shape: ['default', 'circle', 'round'],
   size: ['large', 'middle', 'small'],
   type: ['primary', 'dashed', 'link', 'text', 'default'],
   onClick: 'textarea',
-  children: 'string',
 };
 
 const textAreaProps: Props = {

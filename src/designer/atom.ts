@@ -2,12 +2,9 @@ import { atom, useRecoilState } from 'recoil';
 import { FormElementInstance } from '../builder/types';
 
 export type DesignerAtom = {
-  elements: FormElementInstance[];
   mode: 'edit' | 'preview';
-  selectedElement: {
-    element: FormElementInstance;
-    index: number;
-  } | null;
+  elements: FormElementInstance[];
+  selectedElement: FormElementInstance | null;
 };
 
 export const designerLeftAtom = atom<DesignerAtom>({
@@ -26,13 +23,15 @@ export const designerLeftSidebarOpen = atom<boolean>({
   default: true,
 });
 
-export const useDesignerLeftSidebarOpen = () =>
-  useRecoilState(designerLeftSidebarOpen);
+export const useDesignerLeftSidebarOpen = () => {
+  return useRecoilState(designerLeftSidebarOpen);
+};
 
 export const designerRightSidebarOpen = atom<boolean>({
   key: 'designerRightSidebarOpen',
   default: true,
 });
 
-export const useDesignerRightSidebarOpen = () =>
-  useRecoilState(designerRightSidebarOpen);
+export const useDesignerRightSidebarOpen = () => {
+  return useRecoilState(designerRightSidebarOpen);
+};

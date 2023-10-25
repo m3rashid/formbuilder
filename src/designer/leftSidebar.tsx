@@ -6,7 +6,7 @@ import elements from './elements';
 import { Card, Typography } from 'antd';
 import useDesigner from './useDesigner';
 
-const HelperSidebar: React.FC = () => {
+const LeftSidebar: React.FC = () => {
   const { addElement } = useDesigner();
 
   return (
@@ -16,8 +16,8 @@ const HelperSidebar: React.FC = () => {
       sidebarOpenAtom={designerLeftSidebarOpen}
     >
       {elements.map((element) => (
-        // <AddElement key={element.widgetName} {...element} />
         <Card
+          key={element.widgetName}
           onClick={() => addElement(element)}
           bodyStyle={{
             padding: 10,
@@ -40,4 +40,4 @@ const HelperSidebar: React.FC = () => {
   );
 };
 
-export default HelperSidebar;
+export default LeftSidebar;

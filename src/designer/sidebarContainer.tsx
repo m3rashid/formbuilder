@@ -53,7 +53,7 @@ const SidebarContainer: React.FC<SidebarContainerProps> = ({
       </div>
 
       <div
-        className='flex w-full py-4 pb-8 flex-col gap-4 mt-4 scrollbar-hidden'
+        className='flex w-full py-4 pb-8 flex-col gap-2 mt-4 scrollbar-hidden'
         style={{ height: 'calc(100vh - 42px)', overflowY: 'auto' }}
       >
         {children}

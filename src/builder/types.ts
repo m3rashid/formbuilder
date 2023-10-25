@@ -58,11 +58,11 @@ export type CurrentWidgetFCProps<T extends SupportedWidget> = React.FC<
 >;
 
 export type FormElementInstance = WidgetNameWithProps & {
+  key: string;
   children?: FormElementInstance[];
   renderChildren?: any;
   formItemProps?: FormItemProps;
   render?: (field: any) => React.FC;
-  key?: React.Key;
 };
 
 export type FormBuilderMeta = FormElementInstance[];
