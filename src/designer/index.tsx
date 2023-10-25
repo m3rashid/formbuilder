@@ -30,11 +30,11 @@ const Designer: React.FC = () => {
                 <FormBuilder meta={elements} />
               </div>
             ) : (
-              <DndContext
-                onDragEnd={onDragEnd}
-                collisionDetection={closestCenter}
-              >
-                <div className='h-[calc(h-screen - 90px)] p-2 bg-white rounded-md'>
+              <div className='h-[calc(h-screen - 90px)] p-2 bg-white rounded-md'>
+                <DndContext
+                  onDragEnd={onDragEnd}
+                  collisionDetection={closestCenter}
+                >
                   <FormBuilder
                     meta={elements.map((el) => ({
                       ...el,
@@ -47,8 +47,8 @@ const Designer: React.FC = () => {
                       },
                     }))}
                   />
-                </div>
-              </DndContext>
+                </DndContext>
+              </div>
             )
           ) : null}
         </div>
