@@ -106,6 +106,10 @@ const useDesigner = () => {
     setDesigner((p) => ({ ...p, mode: val }));
   };
 
+  const showFormParentProps = () => {
+    setDesigner((prev) => ({ ...prev, selectedElement: null }));
+  };
+
   return {
     setMode,
     onDragEnd,
@@ -114,6 +118,7 @@ const useDesigner = () => {
     selectElement,
     updateElement,
     removeElement,
+    showFormParentProps,
     mode: designer.mode,
     elements: designer.elements,
     selectedElement: designer.selectedElement,

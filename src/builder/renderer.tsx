@@ -33,6 +33,7 @@ const FormRenderer: FC<FormRenderProps> = ({ meta }) => {
               </WidgetField>
             );
           } else if (formItemProps) {
+            console.log({ formItemProps });
             return (
               <Form.Item key={key} {...formItemProps}>
                 <WidgetField {...widgetProps} />

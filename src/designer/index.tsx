@@ -1,5 +1,5 @@
 import React from 'react';
-import { Radio } from 'antd';
+import { Button, Radio } from 'antd';
 import { DndContext, closestCenter } from '@dnd-kit/core';
 
 import FormBuilder from '../builder';
@@ -9,7 +9,8 @@ import ElementWrapper from './elementWrapper';
 import RightHelperSidebar from './rightSidebar';
 
 const Designer: React.FC = () => {
-  const { elements, mode, setMode, onDragEnd } = useDesigner();
+  const { elements, mode, setMode, onDragEnd, showFormParentProps } =
+    useDesigner();
 
   return (
     <>
@@ -17,11 +18,13 @@ const Designer: React.FC = () => {
         <LeftSidebar />
 
         <div className='h-[calc(h-screen - m-3)] m-3 w-full overflow-auto'>
-          <div className='bg-white rounded-md mb-3 px-4 py-2'>
+          <div className='flex items-center justify-between bg-white rounded-md mb-3 px-4 py-2'>
             <Radio.Group value={mode} onChange={(e) => setMode(e.target.value)}>
               <Radio.Button value='edit'>Edit</Radio.Button>
               <Radio.Button value='preview'>Preview</Radio.Button>
             </Radio.Group>
+
+            <Button onClick={showFormParentProps}>Change Form Parent</Button>
           </div>
 
           {elements.length > 0 ? (

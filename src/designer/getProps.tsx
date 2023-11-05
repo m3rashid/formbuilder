@@ -3,7 +3,11 @@ import { SupportedValues } from '../builder/exposedProps';
 import _ from 'lodash-es';
 import { CSSProperties } from 'react';
 
-const RenderProps = (props: { label: string; value: SupportedValues }) => {
+const RenderProps = (props: {
+  name: string;
+  label?: string;
+  value: SupportedValues;
+}) => {
   const labelToShow = _.startCase(props.label);
   const commonStyles: CSSProperties = {
     marginBottom: 10,
@@ -11,10 +15,14 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (Array.isArray(props.value)) {
     return (
-      <Form.Item label={labelToShow} name={props.label} style={commonStyles}>
+      <Form.Item label={labelToShow} name={props.name} style={commonStyles}>
         <Select
-          options={props.value.map((t) => ({ label: t, value: t }))}
-          placeholder={`Select value for ${props.label}`}
+          {...{
+            options: props.value.map((t) => ({ label: t, value: t })),
+            ...(props.label
+              ? { placeholder: `Select value for ${props.label}` }
+              : {}),
+          }}
         />
       </Form.Item>
     );
@@ -22,19 +30,17 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (props.value === 'string') {
     return (
-      <Form.Item name={props.label} label={labelToShow} style={commonStyles}>
-        <Input placeholder={`Value for ${props.label}`} />
+      <Form.Item name={props.name} label={labelToShow} style={commonStyles}>
+        <Input
+          {...(props.label ? { placeholder: `Value for ${props.label}` } : {})}
+        />
       </Form.Item>
     );
   }
 
   if (props.value === 'boolean') {
     return (
-      <Form.Item
-        name={props.label}
-        valuePropName='checked'
-        style={commonStyles}
-      >
+      <Form.Item name={props.name} valuePropName='checked' style={commonStyles}>
         <Checkbox>{labelToShow}</Checkbox>
       </Form.Item>
     );
@@ -42,7 +48,7 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (props.value === 'number') {
     return (
-      <Form.Item name={props.label} label={labelToShow} style={commonStyles}>
+      <Form.Item name={props.name} label={labelToShow} style={commonStyles}>
         <InputNumber style={{ width: '100%' }} />
       </Form.Item>
     );
@@ -50,8 +56,10 @@ const RenderProps = (props: { label: string; value: SupportedValues }) => {
 
   if (props.value === 'textarea') {
     return (
-      <Form.Item name={props.label} label={labelToShow} style={commonStyles}>
-        <Input.TextArea placeholder={`Value for ${props.label}`} />
+      <Form.Item name={props.name} label={labelToShow} style={commonStyles}>
+        <Input.TextArea
+          {...(props.label ? { placeholder: `Value for ${props.label}` } : {})}
+        />
       </Form.Item>
     );
   }

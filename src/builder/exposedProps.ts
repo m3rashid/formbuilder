@@ -1,14 +1,31 @@
 import { SupportedWidget } from './types';
 
+export const FORM_ITEM_PROPS_FIELD_NAME = 'formItemProps' as const;
+
 export type SupportedValues =
   | 'string'
   | 'textarea'
   | 'number'
   | 'boolean'
   | Array<string>;
-export type Props = Record<string, SupportedValues>;
+export type _Props_ = Record<string, SupportedValues>;
+export type Props =
+  | Record<typeof FORM_ITEM_PROPS_FIELD_NAME, _Props_>
+  | _Props_;
+
+const formItemProps: Record<string, SupportedValues> = {
+  name: 'string',
+  label: 'string',
+};
+
+const formProps: Record<string, SupportedValues> = {
+  layout: ['horizontal', 'inline', 'vertical'],
+  colon: 'boolean',
+  autoCorrect: 'boolean',
+};
 
 const textInputProps: Props = {
+  formItemProps,
   bordered: 'boolean',
   defaultValue: 'string',
   disabled: 'boolean',
@@ -17,15 +34,16 @@ const textInputProps: Props = {
   status: ['status', 'warning'],
   size: ['large', 'middle', 'small'],
   onChange: 'textarea',
-  value: 'string',
 };
 
 const passwordInputProps: Props = {
   ...textInputProps,
+  formItemProps,
   visibilityToggle: 'boolean',
 };
 
 const numberInputProps: Props = {
+  formItemProps,
   bordered: 'boolean',
   controls: 'boolean',
   defaultValue: 'number',
@@ -37,10 +55,10 @@ const numberInputProps: Props = {
   size: ['large', 'middle', 'small'],
   step: 'number',
   onChange: 'textarea',
-  value: 'string',
 };
 
 const buttonProps: Props = {
+  formItemProps,
   children: 'string',
   block: 'boolean',
   danger: 'boolean',
@@ -55,6 +73,7 @@ const buttonProps: Props = {
 };
 
 const textAreaProps: Props = {
+  formItemProps,
   allowClear: 'boolean',
   bordered: 'boolean',
   defaultValue: 'string',
@@ -62,42 +81,61 @@ const textAreaProps: Props = {
   showCount: 'boolean',
   onResize: 'textarea',
   onPressEnter: 'textarea',
-  value: 'string',
 };
 
-const checkboxProps = {};
+const checkboxProps = {
+  formItemProps,
+};
 
-const checkboxGroupProps = {};
+const checkboxGroupProps = {
+  formItemProps,
+};
 
-const radioProps = {};
+const radioProps = {
+  formItemProps,
+};
 
-const radioGroupProps = {};
+const radioGroupProps = {
+  formItemProps,
+};
 
-const monthPickerProps = {};
+const monthPickerProps = {
+  formItemProps,
+};
 
-const quarterPickerProps = {};
+const quarterPickerProps = {
+  formItemProps,
+};
 
-const timerangePickerProps = {};
+const timerangePickerProps = {
+  formItemProps,
+};
 
-const timePickerProps = {};
+const timePickerProps = {
+  formItemProps,
+};
 
-const weekPickerProps = {};
+const weekPickerProps = {
+  formItemProps,
+};
 
-const yearPickerProps = {};
+const yearPickerProps = {
+  formItemProps,
+};
 
-const switchProps = {};
+const switchProps = {
+  formItemProps,
+};
 
-const selectProps = {};
+const selectProps = {
+  formItemProps,
+};
 
 const imageProps = {};
 
 const rowProps = {};
 
 const colProps = {};
-
-const formItemProps = {};
-
-const formProps = {};
 
 const elementProps: Record<SupportedWidget, Props> = {
   'text-input': textInputProps,
