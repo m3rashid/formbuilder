@@ -2,6 +2,7 @@ import { FormBuilderMeta } from './builder/types';
 
 export const form1: FormBuilderMeta = [
   {
+    key: 'sad',
     widgetName: 'form',
     widgetProps: {
       size: 'large',
@@ -9,11 +10,12 @@ export const form1: FormBuilderMeta = [
     },
     children: [
       {
+        key: 'sss',
         formItemProps: {
           name: 'username',
           rules: [{ required: true, message: 'Username is required' }],
         },
-        widgetName: 'input',
+        widgetName: 'text-input',
         widgetProps: {
           placeholder: 'Username',
         },
@@ -27,5 +29,6 @@ export const form1: FormBuilderMeta = [
       children: 'Submit',
       type: 'primary',
     },
+    key: 's',
   },
 ];
