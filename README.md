@@ -2,17 +2,30 @@
 
 # 📝 form-builder
 
-**Drag-and-drop form builder.**
+### Drag-and-drop form builder
 
-[![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)](https://react.dev)
-[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://typescriptlang.org)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://typescriptlang.org)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
 </div>
 
 ---
 
-## 🛠 Tech
+## 📖 Overview
+
+A drag-and-drop form builder — visually compose forms, configure fields, and export the schema.
+
+## 🏗 Project structure
+
+```
+formbuilder/
+├── src/
+├── index.html
+└── vite.config.ts
+```
+
+## 🛠 Tech stack
 
 `React` · `TypeScript` · `Tailwind` · `Vite`
 
@@ -27,4 +40,4 @@ pnpm dev
 
 ## 📄 License
 
-MIT
+MIT © [m3rashid](https://github.com/m3rashid)
